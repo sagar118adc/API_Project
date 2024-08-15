@@ -18,7 +18,7 @@ public class FirstApi {
 
     @Test
     public void postMethod() {
-        String jsonBody ="{\"name\":\"sagar\", \"job\":\"QA\"}";
+        String jsonBody ="{\"name\":\"sagar1\", \"job\":\"QA\"}";
         given()
                 .header("content-type", "application/json")
                 .body(jsonBody)
@@ -27,6 +27,6 @@ public class FirstApi {
                 .assertThat()
                 .statusCode(201)
                 .and()
-                .body("name", equalTo("sagar"));
+                .body("name", equalTo("sagar1"));
     }
 }
