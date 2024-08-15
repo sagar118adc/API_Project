@@ -1,6 +1,8 @@
 import jdk.jfr.ContentType;
 import org.testng.annotations.Test;
 
+import java.security.PublicKey;
+
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
@@ -29,4 +31,24 @@ public class FirstApi {
                 .and()
                 .body("name", equalTo("sagar1"));
     }
+
+
+    @Test
+
+    public void postMethod1() {
+
+        String jsonBody="{\"name\":\"sagar\", \"job\":\"engineer\"}";
+        given()
+                .header("content-type", "application/json")
+                .body(jsonBody)
+                .when()
+                .post("https://reqres.in/api/users")
+                .then()
+                .assertThat()
+                .statusCode(201)
+                .and()
+                .body("job", equalTo("engineer"));
+    }
+
+
 }
