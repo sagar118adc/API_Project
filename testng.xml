@@ -4,6 +4,7 @@
     <test name="Regression">
         <classes>
             <class name="FirstApi"/>
+            <class name="FirstJsonObject"></class>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->
