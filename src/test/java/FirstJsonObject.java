@@ -1,8 +1,8 @@
 import org.json.JSONObject;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
 
 
 public class FirstJsonObject {
@@ -103,22 +103,6 @@ public class FirstJsonObject {
 
 }
 
-@Test
-  public void jsonPut() {
-    JSONObject jsonObject=new JSONObject();
-    jsonObject.put("name", "Tyson1");
-    jsonObject.put("job", "Analyst");
-
-    given()
-        .header("content-type", "application/json")
-        .body(jsonObject.toString())
-        .when()
-        .post("https://reqres.in/api/users")
-        .then()
-        .statusCode(201);
-
-
-}
 
 @Test
   public void jsonPostMethod6() {
@@ -126,7 +110,7 @@ public class FirstJsonObject {
     jsonObject.put("name", "Sudhakar");
     jsonObject.put("job", "Marketing");
     given()
-        .header("content-type", "application-json")
+        .header("content-type", "application/json")
         .body(jsonObject.toString())
         .when()
         .post("https://reqres.in/api/users")
@@ -141,10 +125,38 @@ public class FirstJsonObject {
   public void jsonGet6() {
     given()
         .when()
-        .get("https://reqres.in/api/users?page=2")
+        .get("https://reqres.in/api/users?page=1")
         .then()
         .assertThat()
         .statusCode(200);
+
+
+}
+
+@Test
+  public void deleteMethod() {
+    given()
+        .when()
+        .delete("https://reqres.in/api/users/2")
+        .then()
+        .assertThat()
+        .statusCode(204);
+}
+
+@Test
+  public void jsonPutOne() {
+    JSONObject jsonObject=new JSONObject();
+    jsonObject.put("name", "Raja");
+    given()
+        .header("content-type", "application/json")
+        .body(jsonObject.toString())
+        .when()
+        .put("https://reqres.in/api/users/2")
+        .then()
+        .assertThat()
+        .statusCode(200)
+        .and()
+        .body("name", equalTo("Raja"));
 }
 
   }
