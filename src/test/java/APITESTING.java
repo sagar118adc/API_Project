@@ -39,4 +39,9 @@ public class APITESTING {
         .assertThat()
         .statusCode(200);
   }
+
+  @AfterTest
+  public void closeTest() {
+    System.out.println("Closing Test");
+  }
 }
