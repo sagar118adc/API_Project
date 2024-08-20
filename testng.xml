@@ -5,6 +5,7 @@
         <classes>
             <class name="FirstApi"/>
             <class name="FirstJsonObject"/>
+            <class name="APITESTING"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->
