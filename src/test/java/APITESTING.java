@@ -9,6 +9,7 @@ public class APITESTING {
 
   @BeforeTest
   public void beforeTest() {
+
     baseURI="https://reqres.in/api";
   }
 
@@ -42,5 +43,23 @@ public class APITESTING {
   @AfterTest
   public void closeTest() {
     System.out.println("Closing Test");
+  }
+
+  @Test
+  public void jsonPostMethod() {
+    JSONObject jsonObject=new JSONObject();
+    jsonObject.put("name", "Tyson1");
+    jsonObject.put("job", "Test Engineer");
+    given()
+        .header("content-type", "application/json")
+        .body(jsonObject.toString())
+        .when()
+        .post("/users")
+        .then()
+        .assertThat()
+        .statusCode(201)
+        .and()
+        .body("name", equalTo("Tyson1"));
+
   }
 }
